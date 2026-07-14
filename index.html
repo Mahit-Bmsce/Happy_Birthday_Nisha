@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Happy Birthday</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================= -->
+<!-- CANVAS: TWINKLING STARS BG    -->
+<!-- ============================= -->
+<canvas id="stars-canvas"></canvas>
+
+<!-- ============================= -->
+<!-- SCREEN 1 : LOADER             -->
+<!-- ============================= -->
+<div id="loader-screen" class="screen active">
+  <div class="loader-inner">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Preparing your surprise<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+    <span class="loader-percent" id="loaderPercent">0%</span>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- SCREEN 2 : ENVELOPE            -->
+<!-- ============================= -->
+<div id="envelope-screen" class="screen">
+  <div class="envelope-wrap" id="envelopeWrap">
+    <div class="envelope" id="envelope">
+      <div class="envelope-back"></div>
+      <div class="envelope-letter">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-front-left"></div>
+      <div class="envelope-front-right"></div>
+    </div>
+    <p class="envelope-caption">You have a special surprise</p>
+    <button class="tap-btn" id="openEnvelopeBtn">Tap to Open <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- MAIN CONTENT (post-envelope)  -->
+<!-- ============================= -->
+<div id="main-content">
+
+  <!-- Floating hearts container -->
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <!-- Music toggle -->
+  <button id="musicToggle" class="music-toggle" aria-label="Toggle music">
+    <i class="fa-solid fa-music"></i>
+  </button>
+  <audio id="bgMusic" loop>
+    <source src="music/birthday-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ============================= -->
+  <!-- HERO SECTION                  -->
+  <!-- ============================= -->
+  <section class="hero" id="hero">
+    <div class="balloons">
+      <span class="balloon b1"></span>
+      <span class="balloon b2"></span>
+      <span class="balloon b3"></span>
+      <span class="balloon b4"></span>
+      <span class="balloon b5"></span>
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-reveal>✦ Happy Birthday ✦</p>
+      <h1 class="hero-script" id="heroScript" data-reveal>Happy Birthday</h1>
+      <h2 class="hero-name" id="heroName" data-reveal>Nisha Punia</h2>
+      <p class="hero-sub" data-reveal>Another year more beautiful, more maze, and more moj, and more masti (ps : Bhuddi ho rahi ho)</p>
+      <div class="scroll-cue">
+        <span>Scroll Down</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- AGE / COUNTER SECTION         -->
+  <!-- ============================= -->
+  <section class="age-section" id="ageSection">
+    <p class="section-label" data-aos="fade-up">Celebrating</p>
+    <div class="age-number" data-aos="zoom-in" data-aos-delay="150">
+      <span id="ageCount">21</span>
+      <span class="age-label">Years</span>
+    </div>
+    <p class="age-quote" data-aos="fade-up" data-aos-delay="250">of laughter, and endless awesomeness</p>
+  </section>
+
+  <!-- ============================= -->
+  <!-- MESSAGE / LETTER SECTION      -->
+  <!-- ============================= -->
+  <section class="message-section" id="messageSection">
+    <div class="ornament-line" data-aos="fade-in"></div>
+    <h3 class="section-title" data-aos="fade-up">A Little Note For You</h3>
+    <div class="message-card" data-aos="fade-up" data-aos-delay="150">
+      <i class="fa-solid fa-quote-left quote-icon"></i>
+      <p class="typewriter-text" id="typewriterText"></p>
+      <p class="message-signature">— With Best Wishes</p>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- CAKE / CANDLE SECTION         -->
+  <!-- ============================= -->
+  <section class="cake-section" id="cakeSection">
+    <h3 class="section-title" data-aos="fade-up">Make A Wish</h3>
+    <p class="cake-instruction" data-aos="fade-up" data-aos-delay="100">Tap the candles to blow them out</p>
+
+    <div class="cake-wrap" data-aos="zoom-in" data-aos-delay="200" id="cakeWrap">
+      <div class="cake">
+        <div class="candle c1"><span class="flame"></span></div>
+        <div class="candle c2"><span class="flame"></span></div>
+        <div class="candle c3"><span class="flame"></span></div>
+        <div class="cake-top">
+          <span class="drip d1"></span><span class="drip d2"></span><span class="drip d3"></span><span class="drip d4"></span><span class="drip d5"></span>
+        </div>
+        <div class="cake-middle"></div>
+        <div class="cake-bottom"></div>
+        <div class="cake-plate"></div>
+      </div>
+    </div>
+    <p class="cake-result" id="cakeResult">Your wish has been sent to the stars!</p>
+  </section>
+
+  <!-- ============================= -->
+  <!-- GALLERY SECTION               -->
+  <!-- ============================= -->
+  <section class="gallery-section" id="gallerySection">
+    <h3 class="section-title" data-aos="fade-up">Sweet Memories</h3>
+    <div class="gallery-track" id="galleryTrack">
+      <div class="gallery-card" data-aos="flip-left"><img src="images/photo1.jpeg" alt="Memory 1" loading="lazy"></div>
+      <div class="gallery-card" data-aos="flip-left" data-aos-delay="100"><img src="images/photo2.jpeg" alt="Memory 2" loading="lazy"></div>
+      <div class="gallery-card" data-aos="flip-left" data-aos-delay="200"><img src="images/photo3.jpeg" alt="Memory 3" loading="lazy"></div>
+      <div class="gallery-card" data-aos="flip-left" data-aos-delay="300"><img src="images/photo4.jpeg" alt="Memory 4" loading="lazy"></div>
+      <div class="gallery-card" data-aos="flip-left" data-aos-delay="400"><img src="images/photo5.jpeg" alt="Memory 5" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- WISHES SECTION                -->
+  <!-- ============================= -->
+  <section class="wishes-section" id="wishesSection">
+    <h3 class="section-title" data-aos="fade-up">Extrassss For You</h3>
+    <div class="wishes-grid">
+      <div class="wish-card" data-aos="fade-up" data-aos-delay="0">
+        <span class="wish-icon">🤭</span>
+        <h4>Pick-Up Lines. <br> </h4>
+        <p>1.Tumhari Yado meh insan se..... insane ho raha hoon</p>
+        <p>2.If Beauty had an brand ambassador.... , Congratulations </p>
+        <p>3.Tum coffee nahi ho...Phir bhi meri sleep schedule kharab kar deti ho..</p>
+      </div>
+      <div class="wish-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-circle-exclamation wish-icon"></i>
+        <h4>Error Messages<br> </h4>
+        <p>ERROR 404:<br>Patience Not Found</p>
+        <p>Battery: 2%<br>Still talking.</p>
+        <p>Achievement Unlocked<br>Professional Troublemaker</p>
+      </div>
+      <div class="wish-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-arrows-rotate wish-icon"></i>
+        <h3>Update Manual</h3>
+        <p>Nisha Version 21.0 Update</p>
+        <p><strong>New Features</strong><br>
+            • +10 Wisdom<br>
+            • +100 Confidence<br>
+            • Startup Ideas Updated <br>
+            • Gym Strength Increased </p>
+            <p><strong> Bug Fixes</strong><br>
+            • Still impossible to win arguments against her.<br>
+            • Random zoneout remains a feature.</p>
+            <p><strong> Known Issues</strong><br>
+            • No Patience<br>
+            • hamesha soti rehti hai</p>
+      </div>
+      <div class="wish-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-user-secret wish-icon"></i>
+    <h4> FBI Confidential File</h4>
+    <p><strong> Status:</strong><br>TOP SECRET<br>Authorized Personnel Only</p>
+    <p><strong> Name:</strong><br>Nisha Punia</p>
+    <p><strong> Alias:</strong><br>Maharani Sahiba <br>Your Honor <br>Marwadi Sahiba </p>
+    <p><strong> Threat Level:</strong><br>⭐⭐⭐⭐⭐<br>Extremely Chaotic and Extremely Hard to handle </p>
+    <p><strong>Special Powers:</strong><br>• Can bully anyone.<br>• Turns boring days into unforgettable memories.<br>• Unlimited energy detected.<br>• gets into trouble (bakchodi) without trying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= -->
+  <!-- FINAL / CONFETTI SECTION      -->
+  <!-- ============================= -->
+  <section class="final-section" id="finalSection">
+    <h2 class="final-title" data-aos="zoom-in">Happy Birthday, <span id="finalName">Nisha Punia</span>!</h2>
+    <p class="final-sub" data-aos="fade-up" data-aos-delay="150">May your day be filled with love, Happiness, laughter and cake 🎂</p>
+    <button class="celebrate-btn" id="celebrateBtn" data-aos="fade-up" data-aos-delay="250">Celebrate Again <i class="fa-solid fa-champagne-glasses"></i></button>
+    <p class="footer-credit"> Made for you</p>
+  </section>
+
+</div>
+
+<!-- ============================= -->
+<!-- SCRIPTS                        -->
+<!-- ============================= -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
